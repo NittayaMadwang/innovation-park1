@@ -1,0 +1,9 @@
+Google Calendar API : https://developers.google.com/google-apps/calendar/v3/reference/
+Google Console : https://console.developers.google.com
+
+FullCalendar
+Resources.json
+{ "id": "a", "title": "Auditorium A" },
+
+events.json
+{ "id": "1", "resourceId": "a", "start": "2016-09-07T02:00:00", "end": "2016-09-07T07:00:00", "title": "event 1" },
