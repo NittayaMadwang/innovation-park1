@@ -1,13 +1,10 @@
 <?php
 	include('function.php');
 
-	if(isset($_POST['signin'])){
-      $result = authentication($_POST['email'], $_POST['password']);
+	if(isset($_POST['signup'])){
+		$result = InsertUser($_POST['username'],$_POST['email'], $_POST['password'],2,0);
 	  if($result){
-	    header('location: main.php');
-		die();
-	  }else{
-		header('location: index.php?result=0');
+		  header('location: signup.php?result=1');
 		die();
 	  }
 	}
@@ -44,36 +41,36 @@
       <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form id="frm1" name="frm1" action="" method="post" class="form-signin">
-              <h1>Innovation Park</h1>
-              <h2>Sign in</h2>
+		<div class="form login_form">	  
+			<section class="login_content">
+			 <form id="frm2" name="frm2" action="" method="post">
+              <h1>Create Account</h1>
               <div>
-                <input id="email" name="email" type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" name="username" placeholder="Username" required="" />
               </div>
               <div>
-                <input id="password" name="password" type="password" class="form-control" placeholder="Password" required="" />
+                <input type="email" class="form-control"  name="email" placeholder="Email" required="" />
               </div>
               <div>
-                <button class="btn btn-primary btn-block"  id="signin" name="signin" type="submit">Sign in</button>
+                <input type="password" class="form-control" name="password" placeholder="Password" required="" />
               </div>
-				<br>
-              <a class="reset_pas" href="#">Lost your password?</a><br /> 
+              <div>
+                <!--<button class="btn btn-success submit btn-block" href="index.php">Save</button>-->
+				<button class="btn btn-success submit btn-block" type="submit"  id="signup" name="signup">Save</button>
+			  </div>
               <div class="clearfix"></div>
               <div class="separator">
-                <p class="change_link">
-                  <a href="signup.php" class="to_register"> Create Account </a> 
+                <p class="change_link">Already a member ?
+                  <a href="index.php" class="to_register"> Sign in </a>
                 </p>
                 <div class="clearfix"></div>
                 <br />
-                <div>
-                </div>
               </div>
-            </form>
-          </section>
-        </div>
-     </div>
+             </form>
+			</div>
+			</section>
+		</div>
+	 </div>
     <!-- Modal -->
     <div id="warning" name="warning" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -84,7 +81,7 @@
             </div>
             <div id="msg" name="msg" class="modal-body"></div>
         <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" name="goindex" id ="goindex "data-dismiss="modal" onClick="location.href='index.php'">Close</button>
             </div>
           </div>
         </div>
@@ -115,11 +112,11 @@
       $(document).ready(function() {
         var result = getParameterByName("result");
       if (result != null){
-        if (result == 0){
-          $("#title").html('Warning');
-        $("#msg").html('<p>Authentication Fail. Please check again your email and password.</p>');
-          $('#warning').modal('show');
-          }
+        if (result == 1){
+			 $("#title").html('Succress');
+			 $("#msg").html('<p>Succressfull for create account.</p>');
+             $('#warning').modal('show'); 
+		  }
       }
         });
 
